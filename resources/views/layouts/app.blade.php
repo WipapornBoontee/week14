@@ -294,7 +294,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto ms-md-4">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('index') || request()->is('/') ? 'active' : '' }}" href="{{ route('index') }}">
+                            <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">
                                 <i class="bi bi-house-door me-1"></i> หน้าแรก
                             </a>
                         </li>
@@ -383,7 +383,7 @@
                         <i class="bi bi-feather text-primary me-1"></i> WB Blog Space &copy; {{ date('Y') }}
                     </div>
                     <div class="text-muted small">
-                        พัฒนาด้วย Laravel Framework • สัปดาห์ที่ 13
+                        พัฒนาด้วย Laravel Framework • สัปดาห์ที่ 14
                     </div>
                 </div>
             </div>
@@ -392,5 +392,30 @@
 
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+    <!-- Summernote Lite CSS & JS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#content').summernote({
+                placeholder: 'เขียนเนื้อหาบทความที่นี่...',
+                tabsize: 2,
+                height: 250,
+                callbacks: {
+                    onPaste: function (e) {
+                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                        e.preventDefault();
+                        document.execCommand('insertText', false, bufferText);
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+

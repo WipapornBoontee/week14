@@ -82,7 +82,7 @@
                                 </td>
                                 <td>
                                     <span class="text-secondary" style="font-size: 0.92rem;">
-                                        {{ Str::limit($item->content, 110) }}
+                                        {!! Str::limit(strip_tags($item->content), 110) !!}
                                     </span>
                                 </td>
                                 <td class="text-center">

@@ -41,7 +41,7 @@
 
         <div class="mb-4">
             <label class="form-label fw-bold text-muted small text-uppercase">เนื้อหา</label>
-            <div class="p-4 rounded-4 bg-light text-secondary lh-lg" style="white-space: pre-wrap; font-size: 1.05rem;">{{ $blog->content }}</div>
+            <div class="p-4 rounded-4 bg-light text-secondary lh-lg" style="font-size: 1.05rem;">{!! $blog->content !!}</div>
         </div>
 
         <div class="d-flex justify-content-end gap-2 pt-3">

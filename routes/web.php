@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [BlogController::class, 'index'])->name('welcome');
+Route::get('/detail/{id}', [BlogController::class, 'detail'])->name('blog.detail');
+
 
 Route::get('/index', function () {
     return view('index');
@@ -18,7 +19,6 @@ Route::get('/abouts', function () {
     return view('abouts', compact('name', 'date')); 
 })->name('abouts');
 
-// กลุ่มเส้นทางของนักเขียน (Route Prefix: author) ตามใบงานที่ 13
 Route::prefix('author')->group(function () {
     Route::get('/about', function () {
         $name = "Wipaporn Boontee";
