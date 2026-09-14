@@ -276,6 +276,24 @@
             color: #64748b;
             font-size: 0.9rem;
         }
+
+        /* Responsive Videos & Summernote iframe fix */
+        .article-body iframe,
+        .note-editable iframe,
+        .article-body video,
+        .note-editable video {
+            max-width: 100% !important;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin: 1rem 0;
+        }
+        
+        .note-video-clip {
+            max-width: 100% !important;
+            aspect-ratio: 16 / 9;
+            height: auto !important;
+            border-radius: 12px;
+        }
     </style>
 </head>
 <body>
@@ -402,18 +420,30 @@
 
     <script>
         $(document).ready(function() {
-            $('#content').summernote({
-                placeholder: 'เขียนเนื้อหาบทความที่นี่...',
-                tabsize: 2,
-                height: 250,
-                callbacks: {
-                    onPaste: function (e) {
-                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-                        e.preventDefault();
-                        document.execCommand('insertText', false, bufferText);
+            if ($('#content').length) {
+                $('#content').summernote({
+                    placeholder: 'เขียนเนื้อหาบทความที่นี่...',
+                    tabsize: 2,
+                    height: 300,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'italic', 'underline', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen', 'codeview', 'help']]
+                    ],
+                    callbacks: {
+                        onPaste: function (e) {
+                            var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                            e.preventDefault();
+                            document.execCommand('insertText', false, bufferText);
+                        }
                     }
-                }
-            });
+                });
+            }
         });
     </script>
 </body>
